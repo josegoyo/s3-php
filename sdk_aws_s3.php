@@ -1,5 +1,8 @@
 <?php
 require 'vendor/autoload.php';
+use Aws\S3\S3Client;
+use Aws\S3\Exception\S3Exception;
+
 class Sdk_aws_s3 {
 
 	protected $id;
@@ -17,7 +20,7 @@ class Sdk_aws_s3 {
 
 	public function uploadFile($file_name,$file_path)
 	{
-		$s3 = new Aws\S3\S3Client([
+		$s3 = new S3Client([
 			'region'  => $this->region_name,
 			'version' => 'latest',
 			'credentials' => [
@@ -26,13 +29,20 @@ class Sdk_aws_s3 {
 			]
 		]);
 
-		$result = $s3->putObject([
-			'Bucket' => $this->bucket_name,
-			'Key'    => $file_name,
-			'SourceFile' => $file_path			
-		]);
+		try{
+			$result = $s3->putObject([
+				'Bucket' => $this->bucket_name,
+				'Key'    => $file_name,
+				'SourceFile' => $file_path			
+			]);
+			$response = $result;
 
-		return $result;
+		}catch(S3Exception $e){
+
+			$response = $e->getMessage();
+		}
+		
+		return $response;
 	}
 
 }
