@@ -1,5 +1,7 @@
 <?php
+include('config.php');
 require 'vendor/autoload.php';
+
 use Aws\S3\S3Client;
 use Aws\S3\Exception\S3Exception;
 
@@ -10,12 +12,12 @@ class Sdk_aws_s3 {
 	protected $bucket_name;
 	protected $region_name;
 
-	public function __construct($key_id, $secret_key, $bucket_name, $region)
+	public function __construct()
 	{
-		$this->id = $key_id;
-		$this->secret_key = $secret_key;
-		$this->bucket_name = $bucket_name;
-		$this->region_name = $region;
+		$this->id = Config::$id_key;
+		$this->secret_key = Config::$secret_access_key;
+		$this->bucket_name = Config::$bucket_name;
+		$this->region_name = Config::$region;
 	}
 
 	public function uploadFile($file_name,$file_path)
