@@ -3,5 +3,9 @@
 
 	$s3_sdk = new Sdk_aws_s3();
 	
-	echo $s3_sdk->uploadFile('test.txt', 'files/test.txt');
+	//echo $s3_sdk->uploadFile('test.txt', 'files/test.txt');
+	
+	echo '<pre>';
+	var_dump($s3_sdk->getBucketList());
+	echo '</pre>';
  ?>

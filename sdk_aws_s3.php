@@ -11,6 +11,7 @@ class Sdk_aws_s3 {
 	protected $secret_key;
 	protected $bucket_name;
 	protected $region_name;
+	protected $s3;
 
 	public function __construct()
 	{
@@ -18,11 +19,8 @@ class Sdk_aws_s3 {
 		$this->secret_key = Config::$secret_access_key;
 		$this->bucket_name = Config::$bucket_name;
 		$this->region_name = Config::$region;
-	}
 
-	public function uploadFile($file_name,$file_path)
-	{
-		$s3 = new S3Client([
+		$this->s3 = new S3Client([
 			'region'  => $this->region_name,
 			'version' => 'latest',
 			'credentials' => [
@@ -30,9 +28,13 @@ class Sdk_aws_s3 {
 			    'secret' => $this->secret_key,
 			]
 		]);
+	}
 
+	public function uploadFile($file_name,$file_path)
+	{
 		try{
-			$result = $s3->putObject([
+
+			$result = $this->s3->putObject([
 				'Bucket' => $this->bucket_name,
 				'Key'    => $file_name,
 				'SourceFile' => $file_path			
@@ -44,6 +46,19 @@ class Sdk_aws_s3 {
 			$response = $e->getMessage();
 		}
 		
+		return $response;
+	}
+
+	public function getBucketList()
+	{
+		try{
+
+			$buckets = $this->s3->listBuckets();
+			$response = $buckets['Buckets'];
+
+		}catch(S3Exception $e){
+			$response = $e->getMessage();
+		}
 		return $response;
 	}
 
