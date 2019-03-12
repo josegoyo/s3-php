@@ -45,3 +45,15 @@ Upload file a bucket
 ```php
 $s3_sdk->uploadFile('file-name.txt', 'your/path/file-name.txt','bucket-name');
 ```
+
+Get file content
+
+```php
+$s3_sdk->getFileContent('your bucket','file-name');
+```
+
+Download File
+
+```php
+$s3_sdk->downloadFile('your bucket','file-name');
+```
