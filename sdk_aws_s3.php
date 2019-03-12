@@ -76,6 +76,49 @@ class Sdk_aws_s3 {
 		return $response;
 	}
 
+	public function getContentFile($bucket_name,$key_file)
+	{
+		try{
+
+			$result = $this->s3->getObject([
+			    'Bucket' => $bucket_name,
+			    'Key'    => $key_file
+			]);
+
+			$response = $result['Body'];
+
+		}catch(S3Exception $e){
+
+			$response = $e->getMessage();
+		}
+		return $response;
+	}
+
+	public function downloadFile($bucket_name,$key_file)
+	{
+		try{
+
+			$result = $this->s3->getObject([
+			    'Bucket' => $bucket_name,
+			    'Key'    => $key_file
+			]);
+
+			header('Content-Description: File Transfer');
+		    header('Content-Type: ' . $result->ContentType);
+		    header('Content-Disposition: attachment; filename=' . $key_file);
+		    header('Expires: 0');
+		    header('Cache-Control: must-revalidate');
+		    header('Pragma: public');
+
+			$response = $result['Body'];
+
+		}catch(S3Exception $e){
+
+			$response = $e->getMessage();
+		}
+		return $response;
+	}
+
 }
 
 ?>
