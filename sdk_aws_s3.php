@@ -95,7 +95,6 @@ class Sdk_aws_s3 {
 	public function getFileContent($bucket_name,$key_file)
 	{
 		try{
-
 			$result = $this->s3->getObject([
 			    'Bucket' => $bucket_name,
 			    'Key'    => $key_file
