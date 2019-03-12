@@ -5,9 +5,9 @@
 	
 	//echo $s3_sdk->uploadFile('test.txt', 'files/test.txt','bucket-name');
 	//var_dump($s3_sdk->getBucketList());
-	//var_dump($s3_sdk->createBucket('bucket-name'));
-	// echo $s3_sdk->getContentFile('your bucket','file name');
+	//var_dump($s3_sdk->createBucket('testbucket0005'));
+	// echo $s3_sdk->getFileContent('your bucket','test.txt');
 	
-	echo $s3_sdk->downloadFile('your bucket','file name');
+	echo $s3_sdk->downloadFile('bucket-sdk-s3','test.txt');
 	
  ?>

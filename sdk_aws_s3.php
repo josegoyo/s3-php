@@ -76,7 +76,7 @@ class Sdk_aws_s3 {
 		return $response;
 	}
 
-	public function getContentFile($bucket_name,$key_file)
+	public function getFileContent($bucket_name,$key_file)
 	{
 		try{
 
@@ -102,13 +102,13 @@ class Sdk_aws_s3 {
 			    'Bucket' => $bucket_name,
 			    'Key'    => $key_file
 			]);
-
+	
 			header('Content-Description: File Transfer');
-		    header('Content-Type: ' . $result->ContentType);
-		    header('Content-Disposition: attachment; filename=' . $key_file);
-		    header('Expires: 0');
-		    header('Cache-Control: must-revalidate');
-		    header('Pragma: public');
+			header('Content-Type: ' . $result->ContentType);
+			header('Content-Disposition: attachment; filename=' . $key_file);
+			header('Expires: 0');
+			header('Cache-Control: must-revalidate');
+			header('Pragma: public');
 
 			$response = $result['Body'];
 
