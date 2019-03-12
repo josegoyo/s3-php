@@ -30,6 +30,35 @@ class Sdk_aws_s3 {
 		]);
 	}
 
+	public function createBucket($bucket_name)
+	{
+		try {
+		    $response = $this->s3->createBucket([
+		        'Bucket' => $bucket_name,
+		    ]);
+		}catch (AwsException $e) {
+
+		    $response = $e->getMessage();    
+		}
+
+		return $response;
+	}
+
+	public function getBucketList()
+	{
+		try{
+
+			$buckets = $this->s3->listBuckets();
+			$response = $buckets['Buckets'];
+
+		}catch(S3Exception $e){
+			
+			$response = $e->getMessage();
+		}
+
+		return $response;
+	}
+
 	public function uploadFile($file_name,$file_path)
 	{
 		try{
@@ -45,20 +74,7 @@ class Sdk_aws_s3 {
 
 			$response = $e->getMessage();
 		}
-		
-		return $response;
-	}
 
-	public function getBucketList()
-	{
-		try{
-
-			$buckets = $this->s3->listBuckets();
-			$response = $buckets['Buckets'];
-
-		}catch(S3Exception $e){
-			$response = $e->getMessage();
-		}
 		return $response;
 	}
 

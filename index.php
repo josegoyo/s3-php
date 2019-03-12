@@ -4,8 +4,9 @@
 	$s3_sdk = new Sdk_aws_s3();
 	
 	//echo $s3_sdk->uploadFile('test.txt', 'files/test.txt');
+	//var_dump($s3_sdk->getBucketList());
 	
 	echo '<pre>';
-	var_dump($s3_sdk->getBucketList());
+		var_dump($s3_sdk->createBucket('testbucket0005'));
 	echo '</pre>';
  ?>
