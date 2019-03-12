@@ -76,21 +76,21 @@ class Sdk_aws_s3 {
 		return $response;
 	}
 
-    public function getListFilesBucket($bucket_name)
-    {
-        try {
-            $objects = $this->s3->listObjects([
-                'Bucket' => $bucket_name
-            ]);
+	public function getListFilesBucket($bucket_name)
+	{
+		try {
+		    $objects = $this->s3->listObjects([
+			'Bucket' => $bucket_name
+		    ]);
 
-            $response = $objects['Contents'];
+		    $response = $objects['Contents'];
 
-        } catch (S3Exception $e) {
+		} catch (S3Exception $e) {
 
-            $response = $e->getMessage() . PHP_EOL;
-        }
-        return $response;
-    }
+		    $response = $e->getMessage() . PHP_EOL;
+		}
+		return $response;
+	}
 
 	public function getFileContent($bucket_name,$key_file)
 	{
