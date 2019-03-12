@@ -36,7 +36,7 @@ class Sdk_aws_s3 {
 			]);
 		}catch (AwsException $e) {
 
-		    $response = $e->getMessage();    
+	    		$response = $e->getMessage();    
 		}
 
 		return $response;
@@ -45,7 +45,6 @@ class Sdk_aws_s3 {
 	public function getBucketList()
 	{
 		try{
-
 			$buckets = $this->s3->listBuckets();
 			$response = $buckets['Buckets'];
 
@@ -60,7 +59,6 @@ class Sdk_aws_s3 {
 	public function uploadFile($file_name,$file_path,$bucket_name)
 	{
 		try{
-
 			$result = $this->s3->putObject([
 				'Bucket' => $bucket_name,
 				'Key'    => $file_name,
@@ -83,7 +81,7 @@ class Sdk_aws_s3 {
 				'Bucket' => $bucket_name
 			]);
 
-		    $response = $objects['Contents'];
+		    	$response = $objects['Contents'];
 
 		} catch (S3Exception $e) {
 
@@ -96,8 +94,8 @@ class Sdk_aws_s3 {
 	{
 		try{
 			$result = $this->s3->getObject([
-			    'Bucket' => $bucket_name,
-			    'Key'    => $key_file
+				'Bucket' => $bucket_name,
+				'Key'    => $key_file
 			]);
 
 			$response = $result['Body'];
@@ -112,10 +110,9 @@ class Sdk_aws_s3 {
 	public function downloadFile($bucket_name,$key_file)
 	{
 		try{
-
 			$result = $this->s3->getObject([
-			    'Bucket' => $bucket_name,
-			    'Key'    => $key_file
+				'Bucket' => $bucket_name,
+				'Key'    => $key_file
 			]);
 	
 			header('Content-Description: File Transfer');
