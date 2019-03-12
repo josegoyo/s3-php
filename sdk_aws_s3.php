@@ -36,9 +36,8 @@ class Sdk_aws_s3 {
 			]);
 		}catch (AwsException $e) {
 
-	    		$response = $e->getMessage();    
+    		$response = $e->getMessage();    
 		}
-
 		return $response;
 	}
 
@@ -52,7 +51,6 @@ class Sdk_aws_s3 {
 
 			$response = $e->getMessage();
 		}
-
 		return $response;
 	}
 
@@ -70,7 +68,6 @@ class Sdk_aws_s3 {
 
 			$response = $e->getMessage();
 		}
-
 		return $response;
 	}
 
@@ -81,7 +78,7 @@ class Sdk_aws_s3 {
 				'Bucket' => $bucket_name
 			]);
 
-		    	$response = $objects['Contents'];
+	    	$response = $objects['Contents'];
 
 		} catch (S3Exception $e) {
 
