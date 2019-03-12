@@ -31,9 +31,9 @@ class Sdk_aws_s3 {
 	public function createBucket($bucket_name)
 	{
 		try {
-		    $response = $this->s3->createBucket([
-		        'Bucket' => $bucket_name,
-		    ]);
+			$response = $this->s3->createBucket([
+				'Bucket' => $bucket_name,
+			]);
 		}catch (AwsException $e) {
 
 		    $response = $e->getMessage();    
@@ -79,9 +79,9 @@ class Sdk_aws_s3 {
 	public function getListFilesBucket($bucket_name)
 	{
 		try {
-		    $objects = $this->s3->listObjects([
-			'Bucket' => $bucket_name
-		    ]);
+			$objects = $this->s3->listObjects([
+				'Bucket' => $bucket_name
+			]);
 
 		    $response = $objects['Contents'];
 
