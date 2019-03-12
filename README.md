@@ -46,6 +46,12 @@ Upload file a bucket
 $s3_sdk->uploadFile('file-name.txt', 'your/path/file-name.txt','bucket-name');
 ```
 
+Get list of files from bucket
+
+```php
+$s3_sdk->getListFilesBucket('bucket-name');
+```
+
 Get file content
 
 ```php
